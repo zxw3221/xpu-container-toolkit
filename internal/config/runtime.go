@@ -52,7 +52,7 @@ type csvModeConfig struct {
 
 // dummy allows us to unmarshal only a RuntimeConfig from a *toml.Tree
 type dummy struct {
-	Runtime RuntimeConfig `toml:"nvidia-container-runtime"`
+	Runtime RuntimeConfig `toml:"xpu-container-runtime"`
 }
 
 // getRuntimeConfigFrom reads the nvidia container runtime config from the specified toml Tree.
@@ -86,7 +86,7 @@ func GetDefaultRuntimeConfig() *RuntimeConfig {
 		Mode: auto,
 		Modes: modesConfig{
 			CSV: csvModeConfig{
-				MountSpecPath: "/etc/nvidia-container-runtime/host-files-for-container.d",
+				MountSpecPath: "/etc/xpu-container-runtime/host-files-for-container.d",
 			},
 		},
 	}

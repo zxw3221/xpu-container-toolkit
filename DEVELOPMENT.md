@@ -2,12 +2,12 @@
 
 This repository allows for the components of the NVIDIA container stack to be
 built and released as the NVIDIA Container Toolkit from a single repository. The components:
-* `libnvidia-container`
-* `nvidia-container-runtime`
+* `libxpu-container`
+* `xpu-container-runtime`
 * `nvidia-docker`
 are included as submodules in the `third_party` folder.
 
-The `nvidia-container-toolkit` resides in this repo directly.
+The `xpu-container-toolkit` resides in this repo directly.
 
 ## Building
 
@@ -50,7 +50,7 @@ SUB_KEY_PATH=/path/to/gpg-subkey.key \
     ./scripts/release-packages.sh REPO PACKAGE_REPO_ROOT [REFERENCE]
 ```
 
-Where `REPO` is one of `stable` or `experimental`, `PACKAGE_REPO_ROOT` is the local path to the `libnvidia-container` repository checked out to the `gh-pages` branch, and `REFERENCE` is the git SHA that is to be released. If reference is not specified `HEAD` is assumed.
+Where `REPO` is one of `stable` or `experimental`, `PACKAGE_REPO_ROOT` is the local path to the `libxpu-container` repository checked out to the `gh-pages` branch, and `REFERENCE` is the git SHA that is to be released. If reference is not specified `HEAD` is assumed.
 
 This scripts performs the following basic functions:
 * Pulls the package image defined by the `REFERENCE` git SHA from the staging registry,

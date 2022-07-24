@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/NVIDIA/nvidia-container-toolkit/internal/oci"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	testlog "github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/require"

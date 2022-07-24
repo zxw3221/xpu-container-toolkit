@@ -27,7 +27,7 @@ import (
 
 const (
 	configOverride = "XDG_CONFIG_HOME"
-	configFilePath = "nvidia-container-runtime/config.toml"
+	configFilePath = "xpu-container-runtime/config.toml"
 )
 
 var (
@@ -35,24 +35,24 @@ var (
 	DefaultExecutableDir = "/usr/bin"
 
 	// NVIDIAContainerRuntimeHookExecutable is the executable name for the NVIDIA Container Runtime Hook
-	NVIDIAContainerRuntimeHookExecutable = "nvidia-container-runtime-hook"
+	NVIDIAContainerRuntimeHookExecutable = "xpu-container-runtime-hook"
 	// NVIDIAContainerToolkitExecutable is the executable name for the NVIDIA Container Toolkit (an alias for the NVIDIA Container Runtime Hook)
-	NVIDIAContainerToolkitExecutable = "nvidia-container-toolkit"
+	NVIDIAContainerToolkitExecutable = "xpu-container-toolkit"
 
 	// XPUContainerRuntimeHookExecutable is the executable name for the XPU Container Runtime Hook
-	XPUContainerRuntimeHookExecutable = "nvidia-container-runtime-hook"
+	XPUContainerRuntimeHookExecutable = "xpu-container-runtime-hook"
 	//XPUContainerToolkitExecutable is the executable name for the XPU Container Toolkit (an alias for the XPU Container Runtime Hook)
-	XPUContainerToolkitExecutable = "nvidia-container-toolkit"
+	XPUContainerToolkitExecutable = "xpu-container-toolkit"
 
 	configDir = "/etc/"
 )
 
 // Config represents the contents of the config.toml file for the NVIDIA Container Toolkit
-// Note: This is currently duplicated by the HookConfig in cmd/nvidia-container-toolkit/hook_config.go
+// Note: This is currently duplicated by the HookConfig in cmd/xpu-container-toolkit/hook_config.go
 type Config struct {
-	NVIDIAContainerCLIConfig     ContainerCLIConfig `toml:"nvidia-container-cli"`
-	NVIDIACTKConfig              CTKConfig          `toml:"nvidia-ctk"`
-	NVIDIAContainerRuntimeConfig RuntimeConfig      `toml:"nvidia-container-runtime"`
+	NVIDIAContainerCLIConfig     ContainerCLIConfig `toml:"xpu-container-cli"`
+	NVIDIACTKConfig              CTKConfig          `toml:"xpu-ctk"`
+	NVIDIAContainerRuntimeConfig RuntimeConfig      `toml:"xpu-container-runtime"`
 }
 
 // GetConfig sets up the config struct. Values are read from a toml file
@@ -100,7 +100,7 @@ func getConfigFrom(toml *toml.Tree) (*Config, error) {
 	cfg.NVIDIACTKConfig = *getCTKConfigFrom(toml)
 	runtimeConfig, err := getRuntimeConfigFrom(toml)
 	if err != nil {
-		return nil, fmt.Errorf("failed to load nvidia-container-runtime config: %v", err)
+		return nil, fmt.Errorf("failed to load xpu-container-runtime config: %v", err)
 	}
 	cfg.NVIDIAContainerRuntimeConfig = *runtimeConfig
 

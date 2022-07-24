@@ -31,7 +31,7 @@ func TestGetConfigWithCustomConfig(t *testing.T) {
 	require.NoError(t, err)
 
 	// By default debug is disabled
-	contents := []byte("[nvidia-container-runtime]\ndebug = \"/nvidia-container-toolkit.log\"")
+	contents := []byte("[xpu-container-runtime]\ndebug = \"/xpu-container-toolkit.log\"")
 	testDir := filepath.Join(wd, "test")
 	filename := filepath.Join(testDir, configFilePath)
 
@@ -44,7 +44,7 @@ func TestGetConfigWithCustomConfig(t *testing.T) {
 
 	cfg, err := GetConfig()
 	require.NoError(t, err)
-	require.Equal(t, cfg.NVIDIAContainerRuntimeConfig.DebugFilePath, "/nvidia-container-toolkit.log")
+	require.Equal(t, cfg.NVIDIAContainerRuntimeConfig.DebugFilePath, "/xpu-container-toolkit.log")
 }
 
 func TestGetConfig(t *testing.T) {
@@ -67,27 +67,27 @@ func TestGetConfig(t *testing.T) {
 					Mode:          "auto",
 					Modes: modesConfig{
 						CSV: csvModeConfig{
-							MountSpecPath: "/etc/nvidia-container-runtime/host-files-for-container.d",
+							MountSpecPath: "/etc/xpu-container-runtime/host-files-for-container.d",
 						},
 					},
 				},
 				NVIDIACTKConfig: CTKConfig{
-					Path: "nvidia-ctk",
+					Path: "xpu-ctk",
 				},
 			},
 		},
 		{
 			description: "config options set inline",
 			contents: []string{
-				"nvidia-container-cli.root = \"/bar/baz\"",
-				"nvidia-container-runtime.debug = \"/foo/bar\"",
-				"nvidia-container-runtime.experimental = true",
-				"nvidia-container-runtime.discover-mode = \"not-legacy\"",
-				"nvidia-container-runtime.log-level = \"debug\"",
-				"nvidia-container-runtime.runtimes = [\"/some/runtime\",]",
-				"nvidia-container-runtime.mode = \"not-auto\"",
-				"nvidia-container-runtime.modes.csv.mount-spec-path = \"/not/etc/nvidia-container-runtime/host-files-for-container.d\"",
-				"nvidia-ctk.path = \"/foo/bar/nvidia-ctk\"",
+				"xpu-container-cli.root = \"/bar/baz\"",
+				"xpu-container-runtime.debug = \"/foo/bar\"",
+				"xpu-container-runtime.experimental = true",
+				"xpu-container-runtime.discover-mode = \"not-legacy\"",
+				"xpu-container-runtime.log-level = \"debug\"",
+				"xpu-container-runtime.runtimes = [\"/some/runtime\",]",
+				"xpu-container-runtime.mode = \"not-auto\"",
+				"xpu-container-runtime.modes.csv.mount-spec-path = \"/not/etc/xpu-container-runtime/host-files-for-container.d\"",
+				"xpu-ctk.path = \"/foo/bar/xpu-ctk\"",
 			},
 			expectedConfig: &Config{
 				NVIDIAContainerCLIConfig: ContainerCLIConfig{
@@ -100,31 +100,31 @@ func TestGetConfig(t *testing.T) {
 					Mode:          "not-auto",
 					Modes: modesConfig{
 						CSV: csvModeConfig{
-							MountSpecPath: "/not/etc/nvidia-container-runtime/host-files-for-container.d",
+							MountSpecPath: "/not/etc/xpu-container-runtime/host-files-for-container.d",
 						},
 					},
 				},
 				NVIDIACTKConfig: CTKConfig{
-					Path: "/foo/bar/nvidia-ctk",
+					Path: "/foo/bar/xpu-ctk",
 				},
 			},
 		},
 		{
 			description: "config options set in section",
 			contents: []string{
-				"[nvidia-container-cli]",
+				"[xpu-container-cli]",
 				"root = \"/bar/baz\"",
-				"[nvidia-container-runtime]",
+				"[xpu-container-runtime]",
 				"debug = \"/foo/bar\"",
 				"experimental = true",
 				"discover-mode = \"not-legacy\"",
 				"log-level = \"debug\"",
 				"runtimes = [\"/some/runtime\",]",
 				"mode = \"not-auto\"",
-				"[nvidia-container-runtime.modes.csv]",
-				"mount-spec-path = \"/not/etc/nvidia-container-runtime/host-files-for-container.d\"",
-				"[nvidia-ctk]",
-				"path = \"/foo/bar/nvidia-ctk\"",
+				"[xpu-container-runtime.modes.csv]",
+				"mount-spec-path = \"/not/etc/xpu-container-runtime/host-files-for-container.d\"",
+				"[xpu-ctk]",
+				"path = \"/foo/bar/xpu-ctk\"",
 			},
 			expectedConfig: &Config{
 				NVIDIAContainerCLIConfig: ContainerCLIConfig{
@@ -137,12 +137,12 @@ func TestGetConfig(t *testing.T) {
 					Mode:          "not-auto",
 					Modes: modesConfig{
 						CSV: csvModeConfig{
-							MountSpecPath: "/not/etc/nvidia-container-runtime/host-files-for-container.d",
+							MountSpecPath: "/not/etc/xpu-container-runtime/host-files-for-container.d",
 						},
 					},
 				},
 				NVIDIACTKConfig: CTKConfig{
-					Path: "/foo/bar/nvidia-ctk",
+					Path: "/foo/bar/xpu-ctk",
 				},
 			},
 		},

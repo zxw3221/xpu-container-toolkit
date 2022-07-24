@@ -29,7 +29,7 @@ import (
 
 const (
 	defaultHooksDir     = "/usr/share/containers/oci/hooks.d"
-	defaultHookFilename = "oci-nvidia-hook.json"
+	defaultHookFilename = "oci-xpu-hook.json"
 )
 
 var hooksDirFlag string
@@ -164,7 +164,7 @@ func getHookPath(hooksDir string, hookFilename string) string {
 }
 
 func generateOciHook(toolkitDir string) hooks.Hook {
-	hookPath := filepath.Join(toolkitDir, "nvidia-container-toolkit")
+	hookPath := filepath.Join(toolkitDir, "xpu-container-toolkit")
 	envPath := "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:" + toolkitDir
 	always := true
 
@@ -173,7 +173,7 @@ func generateOciHook(toolkitDir string) hooks.Hook {
 		Stages:  []string{"prestart"},
 		Hook: rspec.Hook{
 			Path: hookPath,
-			Args: []string{"nvidia-container-toolkit", "prestart"},
+			Args: []string{"xpu-container-toolkit", "prestart"},
 			Env:  []string{envPath},
 		},
 		When: hooks.When{

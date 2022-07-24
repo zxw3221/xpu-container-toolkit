@@ -14,7 +14,7 @@
 # limitations under the License.
 
 readonly CRIO_HOOKS_DIR="/usr/share/containers/oci/hooks.d"
-readonly CRIO_HOOK_FILENAME="oci-nvidia-hook.json"
+readonly CRIO_HOOK_FILENAME="oci-xpu-hook.json"
 
 # shellcheck disable=SC2015
 [ -t 2 ] && readonly LOG_TTY=1 || readonly LOG_NO_TTY=1

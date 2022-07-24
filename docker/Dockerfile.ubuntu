@@ -40,11 +40,11 @@ ENV REVISION "$PKG_VERS-$PKG_REV"
 ENV SECTION ""
 
 # output directory
-ENV DIST_DIR=/tmp/nvidia-container-toolkit-$PKG_VERS
+ENV DIST_DIR=/tmp/xpu-container-toolkit-$PKG_VERS
 RUN mkdir -p $DIST_DIR /dist
 
-# nvidia-container-toolkit
-WORKDIR $GOPATH/src/nvidia-container-toolkit
+# xpu-container-toolkit
+WORKDIR $GOPATH/src/xpu-container-toolkit
 COPY . .
 
 ARG GIT_COMMIT
@@ -64,7 +64,7 @@ ENV LIBNVIDIA_CONTAINER_TOOLS_VERSION ${LIBNVIDIA_CONTAINER_TOOLS_VERSION}
 RUN dch --create --package="${PKG_NAME}" \
         --newversion "${REVISION}" \
             "See https://gitlab.com/nvidia/container-toolkit/container-toolkit/-/blob/${GIT_COMMIT}/CHANGELOG.md for the changelog" && \
-    dch --append "Bump libnvidia-container dependency to ${LIBNVIDIA_CONTAINER_TOOLS_VERSION}" && \
+    dch --append "Bump libxpu-container dependency to ${LIBNVIDIA_CONTAINER_TOOLS_VERSION}" && \
     dch -r "" && \
     if [ "$REVISION" != "$(dpkg-parsechangelog --show-field=Version)" ]; then exit 1; fi
 

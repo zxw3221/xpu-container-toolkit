@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # This script is used to build the packages for the components of the NVIDIA
-# Container Stack. These include the nvidia-container-toolkit in this repository
+# Container Stack. These include the xpu-container-toolkit in this repository
 # as well as the components included in the third_party folder.
 # All required packages are generated in the specified dist folder.
 
@@ -41,30 +41,30 @@ export DIST_DIR
 
 echo "Building ${TARGET} for all packages to ${DIST_DIR}"
 
-: ${LIBNVIDIA_CONTAINER_ROOT:=${PROJECT_ROOT}/third_party/libnvidia-container}
+: ${LIBNVIDIA_CONTAINER_ROOT:=${PROJECT_ROOT}/third_party/libxpu-container}
 : ${NVIDIA_CONTAINER_TOOLKIT_ROOT:=${PROJECT_ROOT}}
-: ${NVIDIA_CONTAINER_RUNTIME_ROOT:=${PROJECT_ROOT}/third_party/nvidia-container-runtime}
+: ${NVIDIA_CONTAINER_RUNTIME_ROOT:=${PROJECT_ROOT}/third_party/xpu-container-runtime}
 : ${NVIDIA_DOCKER_ROOT:=${PROJECT_ROOT}/third_party/nvidia-docker}
 
 
 ${SCRIPTS_DIR}/get-component-versions.sh
 
-# Build libnvidia-container
+# Build libxpu-container
 make -C ${LIBNVIDIA_CONTAINER_ROOT} -f mk/docker.mk ${TARGET}
 
 if [[ -z ${NVIDIA_CONTAINER_TOOLKIT_VERSION} || -z ${LIBNVIDIA_CONTAINER_VERSION} ]]; then
 eval $(${SCRIPTS_DIR}/get-component-versions.sh)
 fi
 
-# Build nvidia-container-toolkit
+# Build xpu-container-toolkit
 make -C ${NVIDIA_CONTAINER_TOOLKIT_ROOT} \
     LIBNVIDIA_CONTAINER_VERSION="${LIBNVIDIA_CONTAINER_VERSION}" \
     LIBNVIDIA_CONTAINER_TAG="${LIBNVIDIA_CONTAINER_TAG}" \
         ${TARGET}
 
-# We set the TOOLKIT_VERSION, TOOLKIT_TAG for the nvidia-container-runtime and nvidia-docker targets
+# We set the TOOLKIT_VERSION, TOOLKIT_TAG for the xpu-container-runtime and nvidia-docker targets
 # The LIB_TAG is also overridden to match the TOOLKIT_TAG.
-# Build nvidia-container-runtime
+# Build xpu-container-runtime
 make -C ${NVIDIA_CONTAINER_RUNTIME_ROOT} \
     LIB_VERSION="${NVIDIA_CONTAINER_RUNTIME_VERSION}" \
     LIB_TAG="${NVIDIA_CONTAINER_TOOLKIT_TAG}" \

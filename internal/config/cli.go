@@ -20,7 +20,7 @@ import (
 	"github.com/pelletier/go-toml"
 )
 
-// ContainerCLIConfig stores the options for the nvidia-container-cli
+// ContainerCLIConfig stores the options for the xpu-container-cli
 type ContainerCLIConfig struct {
 	Root string
 }
@@ -33,7 +33,7 @@ func getContainerCLIConfigFrom(toml *toml.Tree) *ContainerCLIConfig {
 		return cfg
 	}
 
-	cfg.Root = toml.GetDefault("nvidia-container-cli.root", cfg.Root).(string)
+	cfg.Root = toml.GetDefault("xpu-container-cli.root", cfg.Root).(string)
 
 	return cfg
 }

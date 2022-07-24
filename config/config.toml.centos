@@ -3,19 +3,19 @@ disable-require = false
 #accept-nvidia-visible-devices-envvar-when-unprivileged = true
 #accept-nvidia-visible-devices-as-volume-mounts = false
 
-[nvidia-container-cli]
+[xpu-container-cli]
 #root = "/run/nvidia/driver"
-#path = "/usr/bin/nvidia-container-cli"
+path = "/usr/bin/xpu-container-cli"
 environment = []
-#debug = "/var/log/nvidia-container-toolkit.log"
+#debug = "/var/log/xpu-container-toolkit.log"
 #ldcache = "/etc/ld.so.cache"
 load-kmods = true
 #no-cgroups = false
 #user = "root:video"
 ldconfig = "@/sbin/ldconfig"
 
-[nvidia-container-runtime]
-#debug = "/var/log/nvidia-container-runtime.log"
+[xpu-container-runtime]
+#debug = "/var/log/xpu-container-runtime.log"
 log-level = "info"
 
 # Specify the runtimes to consider. This list is processed in order and the PATH
@@ -27,6 +27,6 @@ runtimes = [
 
 mode = "auto"
 
-    [nvidia-container-runtime.modes.csv]
+    [xpu-container-runtime.modes.csv]
 
-    mount-spec-path = "/etc/nvidia-container-runtime/host-files-for-container.d"
+    mount-spec-path = "/etc/xpu-container-runtime/host-files-for-container.d"

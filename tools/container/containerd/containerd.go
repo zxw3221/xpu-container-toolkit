@@ -36,9 +36,9 @@ const (
 	restartModeNone    = "none"
 
 	nvidiaRuntimeName               = "nvidia"
-	nvidiaRuntimeBinary             = "nvidia-container-runtime"
+	nvidiaRuntimeBinary             = "xpu-container-runtime"
 	nvidiaExperimentalRuntimeName   = "nvidia-experimental"
-	nvidiaExperimentalRuntimeBinary = "nvidia-container-runtime-experimental"
+	nvidiaExperimentalRuntimeBinary = "xpu-container-runtime-experimental"
 
 	defaultConfig        = "/etc/containerd/config.toml"
 	defaultSocket        = "/run/containerd/containerd.sock"
@@ -79,7 +79,7 @@ func main() {
 	// Create the top-level CLI
 	c := cli.NewApp()
 	c.Name = "containerd"
-	c.Usage = "Update a containerd config with the nvidia-container-runtime"
+	c.Usage = "Update a containerd config with the xpu-container-runtime"
 	c.Version = "0.1.0"
 
 	// Create the 'setup' subcommand
@@ -130,7 +130,7 @@ func main() {
 		&cli.StringFlag{
 			Name:        "runtime-class",
 			Aliases:     []string{"r"},
-			Usage:       "The name of the runtime class to set for the nvidia-container-runtime",
+			Usage:       "The name of the runtime class to set for the xpu-container-runtime",
 			Value:       defaultRuntimeClass,
 			Destination: &options.runtimeClass,
 			EnvVars:     []string{"CONTAINERD_RUNTIME_CLASS"},
@@ -146,7 +146,7 @@ func main() {
 		&cli.BoolFlag{
 			Name:        "set-as-default",
 			Aliases:     []string{"d"},
-			Usage:       "Set nvidia-container-runtime as the default runtime",
+			Usage:       "Set xpu-container-runtime as the default runtime",
 			Value:       defaultSetAsDefault,
 			Destination: &options.setAsDefault,
 			EnvVars:     []string{"CONTAINERD_SET_AS_DEFAULT"},
@@ -184,7 +184,7 @@ func main() {
 	}
 }
 
-// Setup updates a containerd configuration to include the nvidia-containerd-runtime and reloads it
+// Setup updates a containerd configuration to include the xpu-containerd-runtime and reloads it
 func Setup(c *cli.Context, o *options) error {
 	log.Infof("Starting 'setup' for %v", c.App.Name)
 
@@ -224,7 +224,7 @@ func Setup(c *cli.Context, o *options) error {
 	return nil
 }
 
-// Cleanup reverts a containerd configuration to remove the nvidia-containerd-runtime and reloads it
+// Cleanup reverts a containerd configuration to remove the xpu-containerd-runtime and reloads it
 func Cleanup(c *cli.Context, o *options) error {
 	log.Infof("Starting 'cleanup' for %v", c.App.Name)
 
@@ -334,7 +334,7 @@ func ParseVersion(config *toml.Tree, useLegacyConfig bool) (int, error) {
 	return version, nil
 }
 
-// UpdateConfig updates the containerd config to include the nvidia-container-runtime
+// UpdateConfig updates the containerd config to include the xpu-container-runtime
 func UpdateConfig(config *toml.Tree, o *options, version int) error {
 	var err error
 
@@ -355,7 +355,7 @@ func UpdateConfig(config *toml.Tree, o *options, version int) error {
 	return nil
 }
 
-// RevertConfig reverts the containerd config to remove the nvidia-container-runtime
+// RevertConfig reverts the containerd config to remove the xpu-container-runtime
 func RevertConfig(config *toml.Tree, o *options, version int) error {
 	var err error
 

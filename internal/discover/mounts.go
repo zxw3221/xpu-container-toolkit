@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/NVIDIA/nvidia-container-toolkit/internal/lookup"
+	"github.com/zxw3221/xpu-container-toolkit/internal/lookup"
 	"github.com/sirupsen/logrus"
 )
 

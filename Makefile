@@ -18,7 +18,7 @@ DIST_DIR ?= $(CURDIR)/dist
 
 include $(CURDIR)/versions.mk
 
-MODULE := github.com/NVIDIA/nvidia-container-toolkit
+MODULE := github.com/zxw3221/xpu-container-toolkit
 
 # By default run all native docker-based targets
 docker-native:
@@ -60,7 +60,7 @@ cmd-%: COMMAND_BUILD_OPTIONS = -o $(PREFIX)/$(*)
 endif
 cmds: $(CMD_TARGETS)
 $(CMD_TARGETS): cmd-%:
-	GOOS=$(GOOS) go build -ldflags "-s -w -X github.com/NVIDIA/nvidia-container-toolkit/internal/info.gitCommit=$(GIT_COMMIT) -X github.com/NVIDIA/nvidia-container-toolkit/internal/info.version=$(CLI_VERSION)" $(COMMAND_BUILD_OPTIONS) $(MODULE)/cmd/$(*)
+	GOOS=$(GOOS) go build -ldflags "-s -w -X github.com/zxw3221/xpu-container-toolkit/internal/info.gitCommit=$(GIT_COMMIT) -X github.com/zxw3221/xpu-container-toolkit/internal/info.version=$(CLI_VERSION)" $(COMMAND_BUILD_OPTIONS) $(MODULE)/cmd/$(*)
 
 build:
 	GOOS=$(GOOS) go build ./...

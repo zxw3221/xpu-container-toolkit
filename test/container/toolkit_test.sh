@@ -29,37 +29,37 @@ testing::toolkit::install() {
 	# Ensure toolkit dir is correctly setup
 	test ! -z "$(ls -A "${shared_dir}/usr/local/nvidia/toolkit")"
 
-	test -L "${shared_dir}/usr/local/nvidia/toolkit/libnvidia-container.so.1"
-	test -e "$(${READLINK} -f "${shared_dir}/usr/local/nvidia/toolkit/libnvidia-container.so.1")"
-	test -L "${shared_dir}/usr/local/nvidia/toolkit/libnvidia-container-go.so.1"
-	test -e "$(${READLINK} -f "${shared_dir}/usr/local/nvidia/toolkit/libnvidia-container-go.so.1")"
+	test -L "${shared_dir}/usr/local/nvidia/toolkit/libxpu-container.so.1"
+	test -e "$(${READLINK} -f "${shared_dir}/usr/local/nvidia/toolkit/libxpu-container.so.1")"
+	test -L "${shared_dir}/usr/local/nvidia/toolkit/libxpu-container-go.so.1"
+	test -e "$(${READLINK} -f "${shared_dir}/usr/local/nvidia/toolkit/libxpu-container-go.so.1")"
 
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-cli"
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-toolkit"
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-cli"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-toolkit"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime"
 
-	grep -q -E "nvidia driver modules are not yet loaded, invoking runc directly" "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime"
-	grep -q -E "exec runc \".@\"" "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime"
+	grep -q -E "nvidia driver modules are not yet loaded, invoking runc directly" "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime"
+	grep -q -E "exec runc \".@\"" "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime"
 
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-cli.real"
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-toolkit.real"
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime.real"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-cli.real"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-toolkit.real"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime.real"
 
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime.experimental"
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime-experimental"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime.experimental"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime-experimental"
 
-	grep -q -E "nvidia driver modules are not yet loaded, invoking runc directly" "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime-experimental"
-	grep -q -E "exec runc \".@\"" "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime-experimental"
-	grep -q -E "LD_LIBRARY_PATH=/run/nvidia/driver/usr/lib64:\\\$LD_LIBRARY_PATH " "${shared_dir}/usr/local/nvidia/toolkit/nvidia-container-runtime-experimental"
+	grep -q -E "nvidia driver modules are not yet loaded, invoking runc directly" "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime-experimental"
+	grep -q -E "exec runc \".@\"" "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime-experimental"
+	grep -q -E "LD_LIBRARY_PATH=/run/nvidia/driver/usr/lib64:\\\$LD_LIBRARY_PATH " "${shared_dir}/usr/local/nvidia/toolkit/xpu-container-runtime-experimental"
 
-	test -e "${shared_dir}/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml"
+	test -e "${shared_dir}/usr/local/nvidia/toolkit/.config/xpu-container-runtime/config.toml"
 
 	# Ensure that the config file has the required contents.
 	# NOTE: This assumes that RUN_DIR is '/run/nvidia'
 	local -r nvidia_run_dir="/run/nvidia"
-	grep -q -E "^\s*ldconfig = \"@${nvidia_run_dir}/driver/sbin/ldconfig(.real)?\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml"
-	grep -q -E "^\s*root = \"${nvidia_run_dir}/driver\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml"
-	grep -q -E "^\s*path = \"/usr/local/nvidia/toolkit/nvidia-container-cli\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/nvidia-container-runtime/config.toml"
+	grep -q -E "^\s*ldconfig = \"@${nvidia_run_dir}/driver/sbin/ldconfig(.real)?\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/xpu-container-runtime/config.toml"
+	grep -q -E "^\s*root = \"${nvidia_run_dir}/driver\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/xpu-container-runtime/config.toml"
+	grep -q -E "^\s*path = \"/usr/local/nvidia/toolkit/xpu-container-cli\"" "${shared_dir}/usr/local/nvidia/toolkit/.config/xpu-container-runtime/config.toml"
 }
 
 testing::toolkit::delete() {

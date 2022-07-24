@@ -26,16 +26,16 @@ FROM golang:${GOLANG_VERSION} as build
 # /artifacts/bin
 ARG GOPATH=/artifacts
 
-# Install the experiemental nvidia-container-runtime
-# NOTE: This will be integrated into the nvidia-container-toolkit package / repo
+# Install the experiemental xpu-container-runtime
+# NOTE: This will be integrated into the xpu-container-toolkit package / repo
 ARG NVIDIA_CONTAINER_RUNTIME_EXPERIMENTAL_VERSION=experimental
-RUN GOPATH=/artifacts go install github.com/NVIDIA/nvidia-container-toolkit/cmd/nvidia-container-runtime.experimental@${NVIDIA_CONTAINER_RUNTIME_EXPERIMENTAL_VERSION}
+RUN GOPATH=/artifacts go install github.com/zxw3221/xpu-container-toolkit/cmd/xpu-container-runtime.experimental@${NVIDIA_CONTAINER_RUNTIME_EXPERIMENTAL_VERSION}
 
 WORKDIR /build
 COPY . .
 
 # NOTE: Until the config utilities are properly integrated into the
-# nvidia-container-toolkit repository, these are built from the `tools` folder
+# xpu-container-toolkit repository, these are built from the `tools` folder
 # and not `cmd`.
 RUN GOPATH=/artifacts go install -ldflags="-s -w -X 'main.Version=${VERSION}'" ./tools/...
 
@@ -66,18 +66,18 @@ ARG PACKAGE_VERSION
 ARG TARGETARCH
 ENV PACKAGE_ARCH ${TARGETARCH}
 
-ARG LIBNVIDIA_CONTAINER_REPO="https://nvidia.github.io/libnvidia-container"
+ARG LIBNVIDIA_CONTAINER_REPO="https://nvidia.github.io/libxpu-container"
 ARG LIBNVIDIA_CONTAINER0_VERSION
 RUN if [ "${PACKAGE_ARCH}" = "arm64" ]; then \
-        curl -L ${LIBNVIDIA_CONTAINER_REPO}/${PACKAGE_DIST}/${PACKAGE_ARCH}/libnvidia-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb \
-            --output ${PACKAGE_DIST}/${PACKAGE_ARCH}/libnvidia-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb && \
-        dpkg -i ${PACKAGE_DIST}/${PACKAGE_ARCH}/libnvidia-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb; \
+        curl -L ${LIBNVIDIA_CONTAINER_REPO}/${PACKAGE_DIST}/${PACKAGE_ARCH}/libxpu-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb \
+            --output ${PACKAGE_DIST}/${PACKAGE_ARCH}/libxpu-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb && \
+        dpkg -i ${PACKAGE_DIST}/${PACKAGE_ARCH}/libxpu-container0_${LIBNVIDIA_CONTAINER0_VERSION}_${PACKAGE_ARCH}.deb; \
     fi
 
 RUN dpkg -i \
-    ${PACKAGE_DIST}/${PACKAGE_ARCH}/libnvidia-container1_1.*.deb \
-    ${PACKAGE_DIST}/${PACKAGE_ARCH}/libnvidia-container-tools_1.*.deb \
-    ${PACKAGE_DIST}/${PACKAGE_ARCH}/nvidia-container-toolkit_${PACKAGE_VERSION}*.deb
+    ${PACKAGE_DIST}/${PACKAGE_ARCH}/libxpu-container1_1.*.deb \
+    ${PACKAGE_DIST}/${PACKAGE_ARCH}/libxpu-container-tools_1.*.deb \
+    ${PACKAGE_DIST}/${PACKAGE_ARCH}/xpu-container-toolkit_${PACKAGE_VERSION}*.deb
 
 WORKDIR /work
 

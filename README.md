@@ -1,14 +1,14 @@
 # NVIDIA Container Toolkit
 
-[![GitHub license](https://img.shields.io/github/license/NVIDIA/nvidia-container-toolkit?style=flat-square)](https://raw.githubusercontent.com/NVIDIA/nvidia-container-toolkit/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/NVIDIA/xpu-container-toolkit?style=flat-square)](https://raw.githubusercontent.com/NVIDIA/xpu-container-toolkit/main/LICENSE)
 [![Documentation](https://img.shields.io/badge/documentation-wiki-blue.svg?style=flat-square)](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html)
-[![Package repository](https://img.shields.io/badge/packages-repository-b956e8.svg?style=flat-square)](https://nvidia.github.io/libnvidia-container)
+[![Package repository](https://img.shields.io/badge/packages-repository-b956e8.svg?style=flat-square)](https://nvidia.github.io/libxpu-container)
 
-![nvidia-container-stack](https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png)
+![xpu-container-stack](https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png)
 
 ## Introduction
 
-The NVIDIA Container Toolkit allows users to build and run GPU accelerated containers. The toolkit includes a container runtime [library](https://github.com/NVIDIA/libnvidia-container) and utilities to automatically configure containers to leverage NVIDIA GPUs.
+The NVIDIA Container Toolkit allows users to build and run GPU accelerated containers. The toolkit includes a container runtime [library](https://github.com/NVIDIA/libxpu-container) and utilities to automatically configure containers to leverage NVIDIA GPUs.
 
 Product documentation including an architecture overview, platform support, and installation and usage guides can be found in the [documentation repository](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/overview.html).
 
@@ -27,5 +27,5 @@ The [user guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolk
 
 [Checkout the Contributing document!](CONTRIBUTING.md)
 
-* Please let us know by [filing a new issue](https://github.com/NVIDIA/nvidia-container-toolkit/issues/new)
+* Please let us know by [filing a new issue](https://github.com/zxw3221/xpu-container-toolkit/issues/new)
 * You can contribute by creating a [merge request](https://gitlab.com/nvidia/container-toolkit/container-toolkit/-/merge_requests/new) to our public GitLab repository

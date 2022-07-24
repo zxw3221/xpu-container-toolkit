@@ -30,7 +30,7 @@ import (
 
 const (
 	// DefaultMountSpecPath is default location of CSV files that define the modifications required to the OCI spec
-	DefaultMountSpecPath = "/etc/nvidia-container-runtime/host-files-for-container.d"
+	DefaultMountSpecPath = "/etc/xpu-container-runtime/host-files-for-container.d"
 )
 
 // GetFileList returns the (non-recursive) list of CSV files in the specified

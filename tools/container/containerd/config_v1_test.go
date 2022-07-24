@@ -44,21 +44,21 @@ func TestUpdateV1ConfigDefaultRuntime(t *testing.T) {
 			legacyConfig:                 true,
 			setAsDefault:                 true,
 			expectedDefaultRuntimeName:   nil,
-			expectedDefaultRuntimeBinary: "/test/runtime/dir/nvidia-container-runtime",
+			expectedDefaultRuntimeBinary: "/test/runtime/dir/xpu-container-runtime",
 		},
 		{
 			legacyConfig:                 true,
 			setAsDefault:                 true,
 			runtimeClass:                 "NAME",
 			expectedDefaultRuntimeName:   nil,
-			expectedDefaultRuntimeBinary: "/test/runtime/dir/nvidia-container-runtime",
+			expectedDefaultRuntimeBinary: "/test/runtime/dir/xpu-container-runtime",
 		},
 		{
 			legacyConfig:                 true,
 			setAsDefault:                 true,
 			runtimeClass:                 "nvidia-experimental",
 			expectedDefaultRuntimeName:   nil,
-			expectedDefaultRuntimeBinary: "/test/runtime/dir/nvidia-container-runtime-experimental",
+			expectedDefaultRuntimeBinary: "/test/runtime/dir/xpu-container-runtime-experimental",
 		},
 		{
 			legacyConfig:                 false,
@@ -127,8 +127,8 @@ func TestUpdateV1Config(t *testing.T) {
 	const expectedVersion = int64(1)
 
 	expectedBinaries := []string{
-		"/test/runtime/dir/nvidia-container-runtime",
-		"/test/runtime/dir/nvidia-container-runtime-experimental",
+		"/test/runtime/dir/xpu-container-runtime",
+		"/test/runtime/dir/xpu-container-runtime-experimental",
 	}
 
 	testCases := []struct {
@@ -194,8 +194,8 @@ func TestUpdateV1ConfigWithRuncPresent(t *testing.T) {
 
 	expectedBinaries := []string{
 		runcBinary,
-		"/test/runtime/dir/nvidia-container-runtime",
-		"/test/runtime/dir/nvidia-container-runtime-experimental",
+		"/test/runtime/dir/xpu-container-runtime",
+		"/test/runtime/dir/xpu-container-runtime-experimental",
 	}
 
 	testCases := []struct {
@@ -273,8 +273,8 @@ func TestRevertV1Config(t *testing.T) {
 					"cri": map[string]interface{}{
 						"containerd": map[string]interface{}{
 							"runtimes": map[string]interface{}{
-								"nvidia":              runtimeMapV1("/test/runtime/dir/nvidia-container-runtime"),
-								"nvidia-experimental": runtimeMapV1("/test/runtime/dir/nvidia-container-runtime-experimental"),
+								"nvidia":              runtimeMapV1("/test/runtime/dir/xpu-container-runtime"),
+								"nvidia-experimental": runtimeMapV1("/test/runtime/dir/xpu-container-runtime-experimental"),
 							},
 						},
 					},
@@ -288,10 +288,10 @@ func TestRevertV1Config(t *testing.T) {
 					"cri": map[string]interface{}{
 						"containerd": map[string]interface{}{
 							"runtimes": map[string]interface{}{
-								"nvidia":              runtimeMapV1("/test/runtime/dir/nvidia-container-runtime"),
-								"nvidia-experimental": runtimeMapV1("/test/runtime/dir/nvidia-container-runtime-experimental"),
+								"nvidia":              runtimeMapV1("/test/runtime/dir/xpu-container-runtime"),
+								"nvidia-experimental": runtimeMapV1("/test/runtime/dir/xpu-container-runtime-experimental"),
 							},
-							"default_runtime":      defaultRuntimeV1("/test/runtime/dir/nvidia-container-runtime"),
+							"default_runtime":      defaultRuntimeV1("/test/runtime/dir/xpu-container-runtime"),
 							"default_runtime_name": "nvidia",
 						},
 					},

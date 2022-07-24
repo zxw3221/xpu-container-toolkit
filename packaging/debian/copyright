@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nvidia-container-toolkit
-Source: https://github.com/NVIDIA/nvidia-container-toolkit
+Upstream-Name: xpu-container-toolkit
+Source: https://github.com/zxw3221/xpu-container-toolkit
 
 Files: *
 Copyright: 2017-2020 NVIDIA CORPORATION <cudatools@nvidia.com>

@@ -19,7 +19,7 @@ package oci
 import (
 	"fmt"
 
-	"github.com/NVIDIA/nvidia-container-toolkit/internal/lookup"
+	"github.com/zxw3221/xpu-container-toolkit/internal/lookup"
 	log "github.com/sirupsen/logrus"
 )
 

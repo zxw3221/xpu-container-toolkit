@@ -2,8 +2,8 @@
 
 set -e
 
-NVIDIA_CONTAINER_RUNTIME_HOOK=/usr/bin/nvidia-container-runtime-hook
-NVIDIA_CONTAINER_TOOLKIT=/usr/bin/nvidia-container-toolkit
+NVIDIA_CONTAINER_RUNTIME_HOOK=/usr/bin/xpu-container-runtime-hook
+NVIDIA_CONTAINER_TOOLKIT=/usr/bin/xpu-container-toolkit
 
 case "$1" in
     configure)

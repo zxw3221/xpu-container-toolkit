@@ -18,7 +18,7 @@ package config
 
 import "github.com/pelletier/go-toml"
 
-// CTKConfig stores the config options for the NVIDIA Container Toolkit CLI (nvidia-ctk)
+// CTKConfig stores the config options for the NVIDIA Container Toolkit CLI (xpu-ctk)
 type CTKConfig struct {
 	Path string `toml:"path"`
 }
@@ -31,7 +31,7 @@ func getCTKConfigFrom(toml *toml.Tree) *CTKConfig {
 		return cfg
 	}
 
-	cfg.Path = toml.GetDefault("nvidia-ctk.path", cfg.Path).(string)
+	cfg.Path = toml.GetDefault("xpu-ctk.path", cfg.Path).(string)
 
 	return cfg
 }
@@ -39,7 +39,7 @@ func getCTKConfigFrom(toml *toml.Tree) *CTKConfig {
 // getDefaultCTKConfig defines the default values for the config
 func getDefaultCTKConfig() *CTKConfig {
 	c := CTKConfig{
-		Path: "nvidia-ctk",
+		Path: "xpu-ctk",
 	}
 
 	return &c

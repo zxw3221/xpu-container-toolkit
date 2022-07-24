@@ -128,6 +128,8 @@ LIBNVIDIA_CONTAINER_TAG ?= $(LIB_TAG)
 # We allow the CONFIG_TOML_SUFFIX to be overridden.
 CONFIG_TOML_SUFFIX ?= $(OS)
 
+		#--build-arg GIT_COMMIT="$(GIT_COMMIT)" \
+
 docker-build-%:
 	@echo "Building for $(TARGET_PLATFORM)"
 	docker pull --platform=linux/$(ARCH) $(BASEIMAGE)
@@ -142,7 +144,7 @@ docker-build-%:
 	    --build-arg PKG_REV="$(PKG_REV)" \
 		--build-arg LIBNVIDIA_CONTAINER_TOOLS_VERSION="$(LIBNVIDIA_CONTAINER_TOOLS_VERSION)" \
 	    --build-arg CONFIG_TOML_SUFFIX="$(CONFIG_TOML_SUFFIX)" \
-		--build-arg GIT_COMMIT="$(GIT_COMMIT)" \
+		--build-arg GIT_COMMIT="123" \
 	    --tag $(BUILDIMAGE) \
 	    --file $(DOCKERFILE) .
 	$(DOCKER) run \

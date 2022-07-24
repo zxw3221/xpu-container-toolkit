@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # This script is used to build the packages for the components of the NVIDIA
-# Container Stack. These include the nvidia-container-toolkit in this repository
+# Container Stack. These include the xpu-container-toolkit in this repository
 # as well as the components included in the third_party folder.
 # All required packages are generated in the specified dist folder.
 
@@ -28,12 +28,12 @@ set -e
 SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/../scripts && pwd )"
 PROJECT_ROOT="$( cd ${SCRIPTS_DIR}/.. && pwd )"
 
-LIBNVIDIA_CONTAINER_ROOT=${PROJECT_ROOT}/third_party/libnvidia-container
+LIBNVIDIA_CONTAINER_ROOT=${PROJECT_ROOT}/third_party/libxpu-container
 NVIDIA_CONTAINER_TOOLKIT_ROOT=${PROJECT_ROOT}
-NVIDIA_CONTAINER_RUNTIME_ROOT=${PROJECT_ROOT}/third_party/nvidia-container-runtime
+NVIDIA_CONTAINER_RUNTIME_ROOT=${PROJECT_ROOT}/third_party/xpu-container-runtime
 NVIDIA_DOCKER_ROOT=${PROJECT_ROOT}/third_party/nvidia-docker
 
-# Get version for libnvidia-container
+# Get version for libxpu-container
 libnvidia_container_version_tag=$(grep "#define NVC_VERSION" ${LIBNVIDIA_CONTAINER_ROOT}/src/nvc.h \
     | sed -e 's/#define NVC_VERSION[[:space:]]"\(.*\)"/\1/')
 libnvidia_container_version=${libnvidia_container_version_tag%%~*}
@@ -41,12 +41,12 @@ libnvidia_container_tag=${libnvidia_container_version_tag##${libnvidia_container
 libnvidia_container_tag=${libnvidia_container_tag##~}
 
 versions_makefile=${NVIDIA_CONTAINER_TOOLKIT_ROOT}/versions.mk
-# Get version for nvidia-container-toolit
+# Get version for xpu-container-toolit
 nvidia_container_toolkit_version=$(grep -m 1 "^LIB_VERSION := " ${versions_makefile} | sed -e 's/LIB_VERSION :=[[:space:]]\(.*\)[[:space:]]*/\1/')
 nvidia_container_toolkit_tag=$(grep -m 1 "^LIB_TAG .= " ${versions_makefile} | sed -e 's/LIB_TAG .=[[:space:]]\(.*\)[[:space:]]*/\1/')
 nvidia_container_toolkit_version_tag="${nvidia_container_toolkit_version}${nvidia_container_toolkit_tag:+~${nvidia_container_toolkit_tag}}"
 
-# Get version for nvidia-container-runtime
+# Get version for xpu-container-runtime
 nvidia_container_runtime_version=$(grep -m 1 "^NVIDIA_CONTAINER_RUNTIME_VERSION := " ${versions_makefile} | sed -e 's/NVIDIA_CONTAINER_RUNTIME_VERSION :=[[:space:]]\(.*\)[[:space:]]*/\1/')
 nvidia_container_runtime_tag=${nvidia_container_toolkit_tag}
 nvidia_container_runtime_version_tag="${nvidia_container_runtime_version}${nvidia_container_runtime_tag:+~${nvidia_container_runtime_tag}}"
@@ -63,7 +63,7 @@ echo "NVIDIA_CONTAINER_TOOLKIT_VERSION=${nvidia_container_toolkit_version}"
 echo "NVIDIA_CONTAINER_TOOLKIT_TAG=${nvidia_container_toolkit_tag}"
 echo "NVIDIA_CONTAINER_TOOLKIT_PACKAGE_VERSION=${nvidia_container_toolkit_version_tag//\~/-}"
 if [[ "${libnvidia_container_version_tag}" != "${nvidia_container_toolkit_version_tag}" ]]; then
-    >&2 echo "WARNING: The libnvidia-container and nvidia-container-toolkit versions do not match"
+    >&2 echo "WARNING: The libxpu-container and xpu-container-toolkit versions do not match"
 fi
 echo "NVIDIA_CONTAINER_RUNTIME_VERSION=${nvidia_container_runtime_version}"
 echo "NVIDIA_CONTAINER_RUNTIME_TAG=${nvidia_container_runtime_tag}"

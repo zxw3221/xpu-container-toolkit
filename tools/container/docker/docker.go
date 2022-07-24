@@ -36,9 +36,9 @@ const (
 	restartModeNone   = "none"
 
 	nvidiaRuntimeName               = "nvidia"
-	nvidiaRuntimeBinary             = "nvidia-container-runtime"
+	nvidiaRuntimeBinary             = "xpu-container-runtime"
 	nvidiaExperimentalRuntimeName   = "nvidia-experimental"
-	nvidiaExperimentalRuntimeBinary = "nvidia-container-runtime-experimental"
+	nvidiaExperimentalRuntimeBinary = "xpu-container-runtime-experimental"
 
 	defaultConfig       = "/etc/docker/daemon.json"
 	defaultSocket       = "/var/run/docker.sock"

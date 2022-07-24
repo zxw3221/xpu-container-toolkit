@@ -17,7 +17,7 @@
 function assert_usage() {
     echo "Incorrect arguments: $*"
     echo "$(basename ${BASH_SOURCE[0]}) PACKAGE_REPO_ROOT [SHA]"
-    echo "\tPACKAGE_REPO_ROOT: The path to the libnvidia-container repository"
+    echo "\tPACKAGE_REPO_ROOT: The path to the libxpu-container repository"
     echo "\tSHA: The SHA / reference to release. [Default: HEAD]"
     exit 1
 }
@@ -116,10 +116,10 @@ function sync() {
         return
     fi
     mkdir -p ${dst}
-    cp ${src}/libnvidia-container*.${pkg_type} ${dst}
-    cp ${src}/nvidia-container-toolkit*.${pkg_type} ${dst}
+    cp ${src}/libxpu-container*.${pkg_type} ${dst}
+    cp ${src}/xpu-container-toolkit*.${pkg_type} ${dst}
     if [[ ${REPO} == "stable" ]]; then
-        cp ${src}/nvidia-container-runtime*.${pkg_type} ${dst}
+        cp ${src}/xpu-container-runtime*.${pkg_type} ${dst}
         cp ${src}/nvidia-docker*.${pkg_type} ${dst}
     fi
 }
@@ -154,9 +154,9 @@ if [[ x"${_current_branch}" != x"gh-pages" ]]; then
 fi
 
 : ${UPSTREAM_REMOTE:="origin"}
-_remote_name=$( git remote -v | grep "git@gitlab.com:nvidia/container-toolkit/libnvidia-container.git (push)" | cut -d$'\t' -f1 )
+_remote_name=$( git remote -v | grep "git@gitlab.com:nvidia/container-toolkit/libxpu-container.git (push)" | cut -d$'\t' -f1 )
 if [[ x"${_remote_name}" != x"${UPSTREAM_REMOTE}" ]]; then
-    echo "Identified ${_remote_name} as git@gitlab.com:nvidia/container-toolkit/libnvidia-container.git remote."
+    echo "Identified ${_remote_name} as git@gitlab.com:nvidia/container-toolkit/libxpu-container.git remote."
     echo "Set UPSTREAM_REMOTE=${_remote_name} instead of ${UPSTREAM_REMOTE}"
 fi
 
@@ -176,9 +176,9 @@ git -C ${PACKAGE_REPO_ROOT} commit -s -F- <<EOF
 Add packages for NVIDIA Container Toolkit ${TAG} release
 
 These include:
-* libnvidia-container* ${LIBNVIDIA_CONTAINER_PACKAGE_VERSION}
-* nvidia-container-toolkit ${NVIDIA_CONTAINER_TOOLKIT_PACKAGE_VERSION}
-* nvidia-container-runtime ${NVIDIA_CONTAINER_RUNTIME_PACKAGE_VERSION}
+* libxpu-container* ${LIBNVIDIA_CONTAINER_PACKAGE_VERSION}
+* xpu-container-toolkit ${NVIDIA_CONTAINER_TOOLKIT_PACKAGE_VERSION}
+* xpu-container-runtime ${NVIDIA_CONTAINER_RUNTIME_PACKAGE_VERSION}
 * nvidia-docker ${NVIDIA_DOCKER_PACKAGE_VERSION}
 EOF
 else
@@ -187,15 +187,15 @@ git -C ${PACKAGE_REPO_ROOT} commit -s -F- <<EOF
 Add packages for NVIDIA Container Toolkit ${TAG} ${REPO} release
 
 These include:
-* libnvidia-container* ${LIBNVIDIA_CONTAINER_PACKAGE_VERSION}
-* nvidia-container-toolkit ${NVIDIA_CONTAINER_TOOLKIT_PACKAGE_VERSION}
+* libxpu-container* ${LIBNVIDIA_CONTAINER_PACKAGE_VERSION}
+* xpu-container-toolkit ${NVIDIA_CONTAINER_TOOLKIT_PACKAGE_VERSION}
 EOF
 fi
 
 : ${MASTER_KEY_PATH:? Path to master key MASTER_KEY_PATH must be set}
 : ${SUB_KEY_PATH:? Path to sub key SUB_KEY_PATH must be set}
 : ${GPG_LOCAL_USER:? GPG_LOCAL_USER must be set}
-: ${GNUPG_CONF:=$(mktemp -d -t nvidia-container-toolkit-package-XXXXXXXXXX)}
+: ${GNUPG_CONF:=$(mktemp -d -t xpu-container-toolkit-package-XXXXXXXXXX)}
 
 function sign() {
     local pkg_type=$1

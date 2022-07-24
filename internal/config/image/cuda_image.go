@@ -82,7 +82,7 @@ func (i CUDA) GetRequirements() ([]string, error) {
 	// 	return nil, nil
 	// }
 
-	// All variables with the "NVIDIA_REQUIRE_" prefix are passed to nvidia-container-cli
+	// All variables with the "NVIDIA_REQUIRE_" prefix are passed to xpu-container-cli
 	var requirements []string
 	for name, value := range i {
 		if strings.HasPrefix(name, envNVRequirePrefix) && !strings.HasPrefix(name, envNVRequireJetpack) {

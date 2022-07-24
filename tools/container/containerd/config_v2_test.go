@@ -91,8 +91,8 @@ func TestUpdateV2Config(t *testing.T) {
 	const expectedVersion = int64(2)
 
 	expectedBinaries := []string{
-		"/test/runtime/dir/nvidia-container-runtime",
-		"/test/runtime/dir/nvidia-container-runtime-experimental",
+		"/test/runtime/dir/xpu-container-runtime",
+		"/test/runtime/dir/xpu-container-runtime-experimental",
 	}
 
 	testCases := []struct {
@@ -159,8 +159,8 @@ func TestUpdateV2ConfigWithRuncPresent(t *testing.T) {
 
 	expectedBinaries := []string{
 		runcBinary,
-		"/test/runtime/dir/nvidia-container-runtime",
-		"/test/runtime/dir/nvidia-container-runtime-experimental",
+		"/test/runtime/dir/xpu-container-runtime",
+		"/test/runtime/dir/xpu-container-runtime-experimental",
 	}
 
 	testCases := []struct {
@@ -238,8 +238,8 @@ func TestRevertV2Config(t *testing.T) {
 					"io.containerd.grpc.v1.cri": map[string]interface{}{
 						"containerd": map[string]interface{}{
 							"runtimes": map[string]interface{}{
-								"nvidia":              runtimeMapV2("/test/runtime/dir/nvidia-container-runtime"),
-								"nvidia-experimental": runtimeMapV2("/test/runtime/dir/nvidia-container-runtime-experimental"),
+								"nvidia":              runtimeMapV2("/test/runtime/dir/xpu-container-runtime"),
+								"nvidia-experimental": runtimeMapV2("/test/runtime/dir/xpu-container-runtime-experimental"),
 							},
 						},
 					},
@@ -253,8 +253,8 @@ func TestRevertV2Config(t *testing.T) {
 					"io.containerd.grpc.v1.cri": map[string]interface{}{
 						"containerd": map[string]interface{}{
 							"runtimes": map[string]interface{}{
-								"nvidia":              runtimeMapV2("/test/runtime/dir/nvidia-container-runtime"),
-								"nvidia-experimental": runtimeMapV2("/test/runtime/dir/nvidia-container-runtime-experimental"),
+								"nvidia":              runtimeMapV2("/test/runtime/dir/xpu-container-runtime"),
+								"nvidia-experimental": runtimeMapV2("/test/runtime/dir/xpu-container-runtime-experimental"),
 							},
 							"default_runtime_name": "nvidia",
 						},

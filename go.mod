@@ -1,4 +1,4 @@
-module github.com/NVIDIA/nvidia-container-toolkit
+module github.com/zxw3221/xpu-container-toolkit
 
 go 1.14
 

@@ -15,11 +15,11 @@
 # limitations under the License.
 
 # This script is used to build the packages for the components of the NVIDIA
-# Container Stack. These include the nvidia-container-toolkit in this repository
+# Container Stack. These include the xpu-container-toolkit in this repository
 # as well as the components included in the third_party folder.
 # All required packages are generated in the specified dist folder.
 
 test_repo=$1
 echo "Setting up TEST repo: ${test_repo}"
-sed -i -e "s#nvidia\.github\.io/libnvidia-container#${test_repo}/libnvidia-container#g" /etc/yum.repos.d/nvidia-docker.repo
-yum-config-manager --enable libnvidia-container-experimental
+sed -i -e "s#nvidia\.github\.io/libxpu-container#${test_repo}/libxpu-container#g" /etc/yum.repos.d/nvidia-docker.repo
+yum-config-manager --enable libxpu-container-experimental

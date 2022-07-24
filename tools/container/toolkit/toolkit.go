@@ -32,10 +32,10 @@ const (
 	// DefaultNvidiaDriverRoot specifies the default NVIDIA driver run directory
 	DefaultNvidiaDriverRoot = "/run/nvidia/driver"
 
-	nvidiaContainerCliSource         = "/usr/bin/nvidia-container-cli"
-	nvidiaContainerRuntimeHookSource = "/usr/bin/nvidia-container-toolkit"
+	nvidiaContainerCliSource         = "/usr/bin/xpu-container-cli"
+	nvidiaContainerRuntimeHookSource = "/usr/bin/xpu-container-toolkit"
 
-	nvidiaContainerToolkitConfigSource = "/etc/nvidia-container-runtime/config.toml"
+	nvidiaContainerToolkitConfigSource = "/etc/xpu-container-runtime/config.toml"
 	configFilename                     = "config.toml"
 )
 
@@ -82,18 +82,18 @@ func main() {
 			EnvVars:     []string{"NVIDIA_DRIVER_ROOT"},
 		},
 		&cli.StringFlag{
-			Name:        "nvidia-container-runtime-debug",
+			Name:        "xpu-container-runtime-debug",
 			Usage:       "Specify the location of the debug log file for the NVIDIA Container Runtime",
 			Destination: &nvidiaContainerRuntimeDebugFlag,
 			EnvVars:     []string{"NVIDIA_CONTAINER_RUNTIME_DEBUG"},
 		},
 		&cli.StringFlag{
-			Name:        "nvidia-container-runtime-debug-log-level",
+			Name:        "xpu-container-runtime-debug-log-level",
 			Destination: &nvidiaContainerRuntimeLogLevelFlag,
 			EnvVars:     []string{"NVIDIA_CONTAINER_RUNTIME_LOG_LEVEL"},
 		},
 		&cli.StringFlag{
-			Name:        "nvidia-container-cli-debug",
+			Name:        "xpu-container-cli-debug",
 			Usage:       "Specify the location of the debug log file for the NVIDIA Container CLI",
 			Destination: &nvidiaContainerCLIDebugFlag,
 			EnvVars:     []string{"NVIDIA_CONTAINER_CLI_DEBUG"},
@@ -144,7 +144,7 @@ func Install(cli *cli.Context) error {
 		return fmt.Errorf("error removing toolkit directory: %v", err)
 	}
 
-	toolkitConfigDir := filepath.Join(toolkitDirArg, ".config", "nvidia-container-runtime")
+	toolkitConfigDir := filepath.Join(toolkitDirArg, ".config", "xpu-container-runtime")
 	toolkitConfigPath := filepath.Join(toolkitConfigDir, configFilename)
 
 	err = createDirectories(toolkitDirArg, toolkitConfigDir)
@@ -181,7 +181,7 @@ func Install(cli *cli.Context) error {
 }
 
 // installContainerLibraries locates and installs the libraries that are part of
-// the nvidia-container-toolkit.
+// the xpu-container-toolkit.
 // A predefined set of library candidates are considered, with the first one
 // resulting in success being installed to the toolkit folder. The install process
 // resolves the symlink for the library and copies the versioned library itself.
@@ -189,8 +189,8 @@ func installContainerLibraries(toolkitDir string) error {
 	log.Infof("Installing NVIDIA container library to '%v'", toolkitDir)
 
 	libs := []string{
-		"libnvidia-container.so.1",
-		"libnvidia-container-go.so.1",
+		"libxpu-container.so.1",
+		"libxpu-container-go.so.1",
 	}
 
 	for _, l := range libs {
@@ -245,7 +245,7 @@ func installToolkitConfig(toolkitConfigPath string, nvidiaDriverDir string, nvid
 	defer targetConfig.Close()
 
 	nvidiaContainerCliKey := func(p string) []string {
-		return []string{"nvidia-container-cli", p}
+		return []string{"xpu-container-cli", p}
 	}
 
 	// Read the ldconfig path from the config as this may differ per platform
@@ -261,9 +261,9 @@ func installToolkitConfig(toolkitConfigPath string, nvidiaDriverDir string, nvid
 
 	// Set the debug options if selected
 	debugOptions := map[string]string{
-		"nvidia-container-runtime.debug":     nvidiaContainerRuntimeDebugFlag,
-		"nvidia-container-runtime.log-level": nvidiaContainerRuntimeLogLevelFlag,
-		"nvidia-container-cli.debug":         nvidiaContainerCLIDebugFlag,
+		"xpu-container-runtime.debug":     nvidiaContainerRuntimeDebugFlag,
+		"xpu-container-runtime.log-level": nvidiaContainerRuntimeLogLevelFlag,
+		"xpu-container-cli.debug":         nvidiaContainerCLIDebugFlag,
 	}
 	for key, value := range debugOptions {
 		if value == "" {
@@ -294,8 +294,8 @@ func installContainerCLI(toolkitDir string) (string, error) {
 	e := executable{
 		source: nvidiaContainerCliSource,
 		target: executableTarget{
-			dotfileName: "nvidia-container-cli.real",
-			wrapperName: "nvidia-container-cli",
+			dotfileName: "xpu-container-cli.real",
+			wrapperName: "xpu-container-cli",
 		},
 		env: env,
 	}
@@ -319,8 +319,8 @@ func installRuntimeHook(toolkitDir string, configFilePath string) (string, error
 	e := executable{
 		source: nvidiaContainerRuntimeHookSource,
 		target: executableTarget{
-			dotfileName: "nvidia-container-toolkit.real",
-			wrapperName: "nvidia-container-toolkit",
+			dotfileName: "xpu-container-toolkit.real",
+			wrapperName: "xpu-container-toolkit",
 		},
 		argLines: argLines,
 	}
@@ -330,7 +330,7 @@ func installRuntimeHook(toolkitDir string, configFilePath string) (string, error
 		return "", fmt.Errorf("error installing NVIDIA container runtime hook: %v", err)
 	}
 
-	err = installSymlink(toolkitDir, "nvidia-container-runtime-hook", installedPath)
+	err = installSymlink(toolkitDir, "xpu-container-runtime-hook", installedPath)
 	if err != nil {
 		return "", fmt.Errorf("error installing symlink to NVIDIA container runtime hook: %v", err)
 	}

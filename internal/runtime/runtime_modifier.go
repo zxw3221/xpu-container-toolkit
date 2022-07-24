@@ -19,7 +19,7 @@ package runtime
 import (
 	"fmt"
 
-	"github.com/NVIDIA/nvidia-container-toolkit/internal/oci"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	log "github.com/sirupsen/logrus"
 )
 

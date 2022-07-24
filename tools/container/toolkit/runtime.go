@@ -25,13 +25,13 @@ import (
 )
 
 const (
-	nvidiaContainerRuntimeSource  = "/usr/bin/nvidia-container-runtime"
-	nvidiaContainerRuntimeTarget  = "nvidia-container-runtime.real"
-	nvidiaContainerRuntimeWrapper = "nvidia-container-runtime"
+	nvidiaContainerRuntimeSource  = "/usr/bin/xpu-container-runtime"
+	nvidiaContainerRuntimeTarget  = "xpu-container-runtime.real"
+	nvidiaContainerRuntimeWrapper = "xpu-container-runtime"
 
-	nvidiaExperimentalContainerRuntimeSource  = "nvidia-container-runtime.experimental"
+	nvidiaExperimentalContainerRuntimeSource  = "xpu-container-runtime.experimental"
 	nvidiaExperimentalContainerRuntimeTarget  = nvidiaExperimentalContainerRuntimeSource
-	nvidiaExperimentalContainerRuntimeWrapper = "nvidia-container-runtime-experimental"
+	nvidiaExperimentalContainerRuntimeWrapper = "xpu-container-runtime-experimental"
 )
 
 // installContainerRuntimes sets up the NVIDIA container runtimes, copying the executables

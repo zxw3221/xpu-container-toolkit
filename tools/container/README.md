@@ -4,7 +4,7 @@ This repository contains tools that allow docker, containerd, or cri-o to be con
 
 *Note*: These were copied from the [`container-config` repository](https://gitlab.com/nvidia/container-toolkit/container-config/-/tree/383587f766a55177ede0e39e3810a974043e503e) are being migrated to commands installed with the NVIDIA Container Toolkit.
 
-These will be migrated into an upcoming `nvidia-ctk` CLI as required.
+These will be migrated into an upcoming `xpu-ctk` CLI as required.
 
 ### Docker
 
@@ -15,7 +15,7 @@ docker setup \
         /run/nvidia/toolkit
 ```
 
-Configure the `nvidia-container-runtime` as a docker runtime named `NAME`. If the `--runtime-name` flag is not specified, this runtime would be called `nvidia`. A runtime named `nvidia-experimental` will also be configured using the `nvidia-container-runtime-experimental` OCI-compliant runtime shim.
+Configure the `xpu-container-runtime` as a docker runtime named `NAME`. If the `--runtime-name` flag is not specified, this runtime would be called `nvidia`. A runtime named `nvidia-experimental` will also be configured using the `xpu-container-runtime-experimental` OCI-compliant runtime shim.
 
 Since `--set-as-default` is enabled by default, the specified runtime name will also be set as the default docker runtime. This can be disabled by explicityly specifying `--set-as-default=false`.
 
@@ -48,7 +48,7 @@ containerd setup \
         /run/nvidia/toolkit
 ```
 
-Configure the `nvidia-container-runtime` as a runtime class named `NAME`. If the `--runtime-class` flag is not specified, this runtime would be called `nvidia`. A runtime class named `nvidia-experimental` will also be configured using the `nvidia-container-runtime-experimental` OCI-compliant runtime shim.
+Configure the `xpu-container-runtime` as a runtime class named `NAME`. If the `--runtime-class` flag is not specified, this runtime would be called `nvidia`. A runtime class named `nvidia-experimental` will also be configured using the `xpu-container-runtime-experimental` OCI-compliant runtime shim.
 
 Adding the `--set-as-default` flag as follows:
 ```bash

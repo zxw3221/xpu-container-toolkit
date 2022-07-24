@@ -85,11 +85,11 @@ func TestUpdateConfig(t *testing.T) {
 			expectedConfig: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -102,11 +102,11 @@ func TestUpdateConfig(t *testing.T) {
 			expectedConfig: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"NAME": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -119,11 +119,11 @@ func TestUpdateConfig(t *testing.T) {
 			expectedConfig: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -133,7 +133,7 @@ func TestUpdateConfig(t *testing.T) {
 			config: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "nvidia-container-runtime",
+						"path": "xpu-container-runtime",
 						"args": []string{},
 					},
 				},
@@ -142,11 +142,11 @@ func TestUpdateConfig(t *testing.T) {
 			expectedConfig: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -168,11 +168,11 @@ func TestUpdateConfig(t *testing.T) {
 						"args": []string{},
 					},
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -188,11 +188,11 @@ func TestUpdateConfig(t *testing.T) {
 				"default-runtime": "nvidia",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -208,11 +208,11 @@ func TestUpdateConfig(t *testing.T) {
 				"default-runtime": "nvidia-experimental",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -236,11 +236,11 @@ func TestUpdateConfig(t *testing.T) {
 				"storage-driver": "overlay2",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -280,7 +280,7 @@ func TestRevertConfig(t *testing.T) {
 			config: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 				},
@@ -291,7 +291,7 @@ func TestRevertConfig(t *testing.T) {
 			config: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 				},
@@ -302,11 +302,11 @@ func TestRevertConfig(t *testing.T) {
 			config: map[string]interface{}{
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 					"nvidia-experimental": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime-experimental",
+						"path": "/test/runtime/dir/xpu-container-runtime-experimental",
 						"args": []string{},
 					},
 				},
@@ -318,7 +318,7 @@ func TestRevertConfig(t *testing.T) {
 				"default-runtime": "nvidia",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 				},
@@ -332,7 +332,7 @@ func TestRevertConfig(t *testing.T) {
 				"default-runtime": "not-nvidia",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 				},
@@ -351,7 +351,7 @@ func TestRevertConfig(t *testing.T) {
 				"storage-driver": "overlay2",
 				"runtimes": map[string]interface{}{
 					"nvidia": map[string]interface{}{
-						"path": "/test/runtime/dir/nvidia-container-runtime",
+						"path": "/test/runtime/dir/xpu-container-runtime",
 						"args": []string{},
 					},
 				},
