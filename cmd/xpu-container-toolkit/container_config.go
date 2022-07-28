@@ -24,8 +24,7 @@ const (
 	envNVMigConfigDevices   = "NVIDIA_MIG_CONFIG_DEVICES"
 	envNVMigMonitorDevices  = "NVIDIA_MIG_MONITOR_DEVICES"
 	envNVDriverCapabilities = "NVIDIA_DRIVER_CAPABILITIES"
-	envXPUVisibleDevices    = "XPU_VISIBLE_DEVICES"
-	envXPUMemVisibleDevices = "BAIDU_COM_XPU_MEM_IDX"
+	envCXPUVisibleDevices   = "CXPU_VISIBLE_DEVICES"
 	envXPUMemLimitInBytes   = "BAIDU_COM_XPU_MEM_LIMIT_INBYTES"
 	envCGPUVisibleDevices   = "XPU0_MEMORY_LIMIT"
 )
@@ -169,8 +168,8 @@ func isPrivileged(s *Spec) bool {
 	return false
 }
 
-func getXPUMemDevicesFromEnvvar(env map[string]string) *string {
-	envVars := []string{envXPUMemVisibleDevices}
+func getCXPUDevicesFromEnvvar(env map[string]string) *string {
+	envVars := []string{envCXPUVisibleDevices}
 	var devices *string
 
 	for _, envVar := range envVars {
@@ -259,8 +258,8 @@ func getDevicesFromMounts(mounts []Mount) *string {
 	return &ret
 }
 
-func getXPUMemDevices(env map[string]string) *string {
-	devices := getXPUMemDevicesFromEnvvar(env)
+func getCXPUDevices(env map[string]string) *string {
+	devices := getCXPUDevicesFromEnvvar(env)
 	if devices != nil {
 		return devices
 	}
@@ -334,7 +333,8 @@ func getNvidiaConfig(hookConfig *HookConfig, image image.CUDA, mounts []Mount, p
 	legacyImage := image.IsLegacy()
 
 	var devices string
-	if xpuDevs := getXPUMemDevices(image); xpuDevs != nil {
+
+    if xpuDevs := getCXPUDevices(image); xpuDevs != nil {
 		devices = *xpuDevs
 	} else {
 		if d := getDevices(hookConfig, image, mounts, privileged, legacyImage); d != nil {

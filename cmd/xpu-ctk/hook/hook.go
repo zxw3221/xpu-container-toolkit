@@ -17,10 +17,10 @@
 package hook
 
 import (
-	symlinks "github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook/create-symlinks"
-	ldcache "github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook/update-ldcache"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
+	symlinks "github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook/create-symlinks"
+	ldcache "github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook/update-ldcache"
 )
 
 type hookCommand struct {

@@ -171,8 +171,9 @@ func createContainer(containerId string) {
 	}
 
 	args = append(args, "cxpu")
-	args = append(args, "--command=create")
-	args = append(args, fmt.Sprintf("--userid=%s", containerId))
+	args = append(args, "--create")
+	args = append(args, fmt.Sprintf("--instance=%s", containerId))
+	args = append(args, "--device=all")
 
 	env := append(os.Environ(), cli.Environment...)
 
@@ -204,9 +205,9 @@ func poststop(containerId string) {
 	}
 
 	args = append(args, "cxpu")
-	//args = append(args, fmt.Sprintf("--user=%s", *cli.User))
-	args = append(args, "--command=destroy")
-	args = append(args, fmt.Sprintf("--userid=%s", containerId))
+	args = append(args, "--destroy")
+	args = append(args, fmt.Sprintf("--instance=%s", containerId))
+	args = append(args, fmt.Sprintf("--device=%s", nvidia.Devices))
 
 	env := append(os.Environ(), cli.Environment...)
 

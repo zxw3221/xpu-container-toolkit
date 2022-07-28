@@ -5,9 +5,9 @@ import (
 	"os"
 	"strings"
 
+	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/zxw3221/xpu-container-toolkit/internal/config"
 	"github.com/zxw3221/xpu-container-toolkit/internal/info"
-	"github.com/opencontainers/runtime-spec/specs-go"
 )
 
 // version must be set by go build's -X main.version= option in the Makefile.

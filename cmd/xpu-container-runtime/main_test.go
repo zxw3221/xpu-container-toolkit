@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/zxw3221/xpu-container-toolkit/cmd/xpu-container-runtime/modifier"
-	"github.com/zxw3221/xpu-container-toolkit/internal/test"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/stretchr/testify/require"
+	"github.com/zxw3221/xpu-container-toolkit/cmd/xpu-container-runtime/modifier"
+	"github.com/zxw3221/xpu-container-toolkit/internal/test"
 )
 
 const (

@@ -22,11 +22,11 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/sirupsen/logrus"
+	"github.com/urfave/cli/v2"
 	"github.com/zxw3221/xpu-container-toolkit/internal/discover/csv"
 	"github.com/zxw3221/xpu-container-toolkit/internal/lookup"
 	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
-	"github.com/sirupsen/logrus"
-	"github.com/urfave/cli/v2"
 )
 
 type command struct {

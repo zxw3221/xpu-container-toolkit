@@ -19,12 +19,12 @@ package main
 import (
 	"fmt"
 
+	"github.com/sirupsen/logrus"
 	"github.com/zxw3221/xpu-container-toolkit/cmd/xpu-container-runtime/modifier"
 	"github.com/zxw3221/xpu-container-toolkit/internal/config"
 	"github.com/zxw3221/xpu-container-toolkit/internal/info"
 	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/zxw3221/xpu-container-toolkit/internal/runtime"
-	"github.com/sirupsen/logrus"
 )
 
 // newNVIDIAContainerRuntime is a factory method that constructs a runtime based on the selected configuration and specified logger

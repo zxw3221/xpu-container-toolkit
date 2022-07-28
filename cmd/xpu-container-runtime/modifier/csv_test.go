@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/zxw3221/xpu-container-toolkit/internal/config"
-	"github.com/zxw3221/xpu-container-toolkit/internal/discover"
-	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	testlog "github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/require"
+	"github.com/zxw3221/xpu-container-toolkit/internal/config"
+	"github.com/zxw3221/xpu-container-toolkit/internal/discover"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 )
 
 func TestNewCSVModifier(t *testing.T) {

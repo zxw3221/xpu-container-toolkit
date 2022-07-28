@@ -19,10 +19,10 @@ package main
 import (
 	"os"
 
-	"github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook"
-	"github.com/zxw3221/xpu-container-toolkit/internal/info"
 	log "github.com/sirupsen/logrus"
 	cli "github.com/urfave/cli/v2"
+	"github.com/zxw3221/xpu-container-toolkit/cmd/xpu-ctk/hook"
+	"github.com/zxw3221/xpu-container-toolkit/internal/info"
 )
 
 var logger = log.New()

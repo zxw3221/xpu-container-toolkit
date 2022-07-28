@@ -19,10 +19,10 @@ package modifier
 import (
 	"path/filepath"
 
-	"github.com/zxw3221/xpu-container-toolkit/internal/config"
-	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/sirupsen/logrus"
+	"github.com/zxw3221/xpu-container-toolkit/internal/config"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 )
 
 // nvidiaContainerRuntimeHookRemover is a spec modifer that detects and removes inserted xpu-container-runtime hooks

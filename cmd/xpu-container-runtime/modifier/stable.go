@@ -22,10 +22,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zxw3221/xpu-container-toolkit/internal/config"
-	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/sirupsen/logrus"
+	"github.com/zxw3221/xpu-container-toolkit/internal/config"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 )
 
 // NewStableRuntimeModifier creates an OCI spec modifier that inserts the NVIDIA Container Runtime Hook into an OCI

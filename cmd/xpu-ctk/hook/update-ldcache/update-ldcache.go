@@ -22,9 +22,9 @@ import (
 	"path/filepath"
 	"syscall"
 
-	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
+	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 )
 
 type command struct {

@@ -22,10 +22,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/zxw3221/xpu-container-toolkit/internal/config"
 	"github.com/opencontainers/runtime-spec/specs-go"
 	testlog "github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/require"
+	"github.com/zxw3221/xpu-container-toolkit/internal/config"
 )
 
 func TestFactoryMethod(t *testing.T) {

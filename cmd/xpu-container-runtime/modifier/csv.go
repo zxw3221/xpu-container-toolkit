@@ -19,6 +19,8 @@ package modifier
 import (
 	"fmt"
 
+	"github.com/opencontainers/runtime-spec/specs-go"
+	"github.com/sirupsen/logrus"
 	"github.com/zxw3221/xpu-container-toolkit/internal/config"
 	"github.com/zxw3221/xpu-container-toolkit/internal/config/image"
 	"github.com/zxw3221/xpu-container-toolkit/internal/cuda"
@@ -27,8 +29,6 @@ import (
 	"github.com/zxw3221/xpu-container-toolkit/internal/edits"
 	"github.com/zxw3221/xpu-container-toolkit/internal/oci"
 	"github.com/zxw3221/xpu-container-toolkit/internal/requirements"
-	"github.com/opencontainers/runtime-spec/specs-go"
-	"github.com/sirupsen/logrus"
 )
 
 // csvMode represents the modifications as performed by the csv runtime mode
