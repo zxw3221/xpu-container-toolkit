@@ -337,12 +337,15 @@ func getNvidiaConfig(hookConfig *HookConfig, image image.CUDA, mounts []Mount, p
     if xpuDevs := getCXPUDevices(image); xpuDevs != nil {
 		devices = *xpuDevs
 	} else {
+        /*
 		if d := getDevices(hookConfig, image, mounts, privileged, legacyImage); d != nil {
 			devices = *d
 		} else {
 			// 'nil' devices means this is not a GPU container.
 			return nil
 		}
+        */
+        return nil
 	}
 
 	var migConfigDevices string
@@ -363,10 +366,12 @@ func getNvidiaConfig(hookConfig *HookConfig, image image.CUDA, mounts []Mount, p
 
 	driverCapabilities := getDriverCapabilities(image, hookConfig.SupportedDriverCapabilities, legacyImage).String()
 
+    /*
 	requirements, err := image.GetRequirements()
 	if err != nil {
 		log.Panicln("failed to get requirements", err)
 	}
+    */
 
 	disableRequire := image.HasDisableRequire()
 
@@ -375,7 +380,7 @@ func getNvidiaConfig(hookConfig *HookConfig, image image.CUDA, mounts []Mount, p
 		MigConfigDevices:   migConfigDevices,
 		MigMonitorDevices:  migMonitorDevices,
 		DriverCapabilities: driverCapabilities,
-		Requirements:       requirements,
+		Requirements:       nil,
 		DisableRequire:     disableRequire,
 	}
 }
